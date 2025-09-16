@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-gradient-to-br from-brand-50 via-white to-brand-100 text-gray-900 antialiased dark:bg-gradient-to-br dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 dark:text-gray-100;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border bg-white/80 backdrop-blur shadow-soft dark:bg-gray-900/60 dark:border-gray-800;
+  }
+  .btn {
+    @apply inline-flex items-center rounded-xl border px-4 py-2 text-sm font-medium shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 transition dark:border-gray-700 dark:text-gray-100;
+  }
+  .input {
+    /* High-contrast input style for both light and dark themes */
+    @apply rounded-lg border px-2.5 py-1.5 text-sm shadow-sm transition w-full
+      bg-white text-gray-900 border-gray-300 placeholder-gray-400
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white
+      dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 dark:placeholder-gray-400 dark:focus-visible:ring-offset-gray-900;
+  }
+  .input:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+  .kbd {
+    @apply inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-md bg-gray-100 text-gray-800 text-xs font-mono border border-gray-300 shadow-sm mr-2 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700;
+  }
+}
+
+/* Improve default focus-visible for interactive elements */
+:where(button, [role="button"], a, input, select, textarea) {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900;
+}
