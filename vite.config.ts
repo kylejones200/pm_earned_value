@@ -33,7 +33,14 @@ export default defineConfig(({ command }) => {
     }
   }
 
+  // Configure base path for GitHub Pages (serves under /<repo>/)
+  // When building in GitHub Actions, GITHUB_REPOSITORY is owner/repo
+  const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1]
+  const isCI = process.env.GITHUB_ACTIONS === 'true'
+  const base = isCI && repoName ? `/${repoName}/` : '/'
+
   return {
+    base,
     plugins: [react(), mockApiPlugin],
   }
 })
